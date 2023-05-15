@@ -1,22 +1,24 @@
 import "../../src/App.css";
 import NavBar from "./header/navBar";
-
-function description(): string {
-  return [...new Array(50)]
-    .map(
-      () =>
-        `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-    )
-    .join("\n");
-}
+import theme from "./UI/theme";
+import { ThemeProvider } from "@mui/material/styles";
+import { CacheProvider } from "@emotion/react";
+import { cacheRtl } from "./UI/functions";
+import { Slider } from "@mui/material";
 function App() {
+  console.log(theme)
+  const sliderHandle = (e: any)=>{
+    console.log(e.target.value)
+  }
   return (
-    <div className="App">
-      <NavBar description={description}><></></NavBar>
-    </div>
+    <CacheProvider value={cacheRtl} >
+      <ThemeProvider theme={theme}>
+        <Slider sx={{m:10, width:200}} color= {}  onChange={sliderHandle}/>
+        <NavBar>
+          <></>
+        </NavBar>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
