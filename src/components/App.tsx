@@ -1,18 +1,17 @@
 import "../../src/App.css";
-import NavBar from "./header/navBar";
+import NavBar from "./header/appBar";
 import theme from "./UI/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider } from "@emotion/react";
 import { cacheRtl } from "./UI/functions";
+import Description from "./body/description";
+import { descriptionText } from "./UI/functions";
 function App() {
-  console.log(theme)
-
   return (
-    <CacheProvider value={cacheRtl} >
+    <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
-        <NavBar>
-          <></>
-        </NavBar>
+        <NavBar />
+        <Description>{descriptionText()}</Description>
       </ThemeProvider>
     </CacheProvider>
   );
