@@ -1,14 +1,14 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material/styles";
+import "@fontsource/raleway";
 import "@fontsource/pacifico";
 
 export const styles = {
     tab: {
       textTransform: "none",
-      fontSize: "1.01rem",
+      fontSize: "1rem",
       padding: "20px",
       fontFamily:'Raleway',
-      fontWeight: 'bold',
       color:'white'
     },
     button:{
