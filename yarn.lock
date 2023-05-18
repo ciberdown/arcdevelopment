@@ -1344,6 +1344,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.40.0.tgz#3ba73359e11f5a7bd3e407f70b3528abfae69cec"
   integrity sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==
 
+"@fontsource/pacifico@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/pacifico/-/pacifico-4.5.9.tgz#99b2bd9d035a8e98f2ef4a1991eb128ad1e836fc"
+  integrity sha512-NwD4LaZFTiLhArrSouowlfmFZFvAoyTjwF8lOiFprmbLvxneqRvZjDWtYWmta5dExIKbfljPZeDVApLQnVQ5jA==
+
 "@fontsource/roboto@^4.5.8":
   version "4.5.8"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.8.tgz#56347764786079838faf43f0eeda22dd7328437f"

@@ -26,7 +26,7 @@ const theme = createTheme({
         main:blue[700]
     },
     secondary: {
-        main: '#f1e5f5'
+        main: orange[400]
       },
   }
 });
