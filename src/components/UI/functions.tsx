@@ -3,8 +3,6 @@ import React from "react";
 import createCache from "@emotion/cache";
 import rtlPlugin from "stylis-plugin-rtl";
 
-import { makeStyles } from "@mui/styles";
-import { Theme } from "@mui/material/styles";
 
 export interface Props {
   window?: () => Window;
@@ -46,12 +44,3 @@ export function ElevationScroll(props: Props) {
     elevation: trigger ? 4 : 0,
   });
 }
-
-export const useStyles = makeStyles((theme: Theme) => ({
-  toolbarMargin: {
-    ...theme.mixins.toolbar,
-  },
-  logo: {
-    height: "4em",
-  },
-}));
