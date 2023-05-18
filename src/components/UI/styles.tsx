@@ -1,19 +1,25 @@
-
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material/styles";
 
-
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    toolbarMargin: {
-      ...theme.mixins.toolbar,
+export const styles = {
+    tab: {
+      textTransform: "none",
+      fontSize: "1rem",
+      padding: "20px",
     },
-    logo: {
-      height: "4em",
-    },
-    tab:{
-      color: 'white' ,
-      fontFamily:"serif"
-    }
-  }));
-  
+  };
+
+export const myStyles = makeStyles((theme: Theme) => ({
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+  },
+  logo: {
+    height: "4em",
+  },
+  myTab: {
+    fontFamily: "serif",
+    textTransform: "none",
+    fontSize:'1rem',
+    padding:'20px'
+  },
+}));

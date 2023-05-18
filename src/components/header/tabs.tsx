@@ -2,18 +2,16 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { useStyles } from "../UI/styles";
 import { useNavigate } from "react-router";
-
-
+import {styles} from '../UI/styles'
 export default function ColorTabs() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState("one");
-  const classes = useStyles();
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  const homeHandle = (str: string) => {
+  const routeHandle = (str: string) => {
     switch (str) {
       case "two":
         navigate("/services");
@@ -33,25 +31,41 @@ export default function ColorTabs() {
     }
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%"}}>
       <Tabs
         value={value}
         onChange={handleChange}
         textColor="secondary"
         indicatorColor="secondary"
         aria-label="secondary tabs example"
-        className={classes.tab}
       >
-        <Tab onClick={() => homeHandle("one")} value="one" label="Home" />
-        <Tab onClick={() => homeHandle("two")} value="two" label="Services" />
         <Tab
-          onClick={() => homeHandle("three")}
+          sx={{ marginRight: "auto", ...styles.tab  }}
+          onClick={() => routeHandle("one")}
+          value="one"
+          label="Home"
+        />
+        <Tab
+        sx={styles.tab}
+          onClick={() => routeHandle("two")}
+          value="two"
+          label="Services"
+        />
+        <Tab
+        sx={styles.tab}
+          onClick={() => routeHandle("three")}
           value="three"
           label="The revelotion"
         />
-        <Tab onClick={() => homeHandle("four")} value="four" label="About us" />
         <Tab
-          onClick={() => homeHandle("five")}
+        sx={styles.tab}
+          onClick={() => routeHandle("four")}
+          value="four"
+          label="About us"
+        />
+        <Tab
+        sx={styles.tab}
+          onClick={() => routeHandle("five")}
           value="five"
           label="Contact us"
         />
@@ -59,5 +73,3 @@ export default function ColorTabs() {
     </Box>
   );
 }
-
-
