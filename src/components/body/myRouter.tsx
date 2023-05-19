@@ -5,6 +5,7 @@ import TheRevelotion from "../header/theRevelotion";
 import AboutUs from "./aboutUs";
 import ContactUs from "./contactUs";
 import { Component } from "react";
+import FreeEstimate from "./freeEstimate";
 
 export default class MyRouter extends Component{
     render(): React.ReactNode {
@@ -17,6 +18,7 @@ export default class MyRouter extends Component{
               <Route path="/revelotion" element={<TheRevelotion />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/contact" element={<ContactUs />} />
+              <Route path="/freeEstimate" element={<FreeEstimate />} />
             </Routes>
           </div>
         </>

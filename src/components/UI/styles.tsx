@@ -34,6 +34,5 @@ export const myStyles = makeStyles((theme: Theme) => ({
     textTransform: "none",
     fontSize:'1rem',
     padding:'20px',
-    
   }
 }));
