@@ -28,6 +28,7 @@ export const myStyles = makeStyles((theme: Theme) => ({
   },
   logo: {
     height: "4em",
+    cursor: 'pointer'
   },
   myTab: {
     fontFamily: "Raleway",

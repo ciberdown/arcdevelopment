@@ -9,8 +9,12 @@ import { orange, blue } from "@mui/material/colors";
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
+import logo from "../../assets/logo.svg";
+import { myStyles } from "../UI/styles";
 
 export default function ColorTabs() {
+  const [value, setValue] = useState("one");
+  const classes = myStyles();
   const primary = orange[400];
   const white = "#FFFFFF";
   const [selectedColor, setColor] = useState<string>(primary);
@@ -34,23 +38,32 @@ export default function ColorTabs() {
         setColor(white);
       }
     });
-  }, []);
-  const [value, setValue] = useState("one");
+  }, [value]);
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setColor(primary);
     setValue(newValue);
     entries.forEach((item) => {
       if (newValue === item[0]) {
         navigate(item[1]);
-        return;
+        return 1;
       }
     });
   };
 
   return (
     <>
+      <img
+        onClick={() => {
+          navigate("/");
+          setValue("one");
+        }}
+        className={classes.logo}
+        src={logo}
+        alt="arc logo"
+      />
       <Box sx={{ width: "100%", color: "red" }}>
-        <MyTabs selectedColor={selectedColor}>
+        <MyCustomTabs selectedColor={selectedColor}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -68,7 +81,7 @@ export default function ColorTabs() {
             <Tab sx={styles.tab} value="four" label="About us" />
             <Tab sx={styles.tab} value="five" label="Contact us" />
           </Tabs>
-        </MyTabs>
+        </MyCustomTabs>
       </Box>
       <Button
         variant="contained"
@@ -85,7 +98,7 @@ export default function ColorTabs() {
   );
 }
 
-function MyTabs({
+function MyCustomTabs({
   children,
   selectedColor,
 }: {
