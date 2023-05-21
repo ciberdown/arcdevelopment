@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./home";
-import Services from "./servises";
+import Services from "./services/servises";
 import TheRevelotion from "../header/theRevelotion";
 import AboutUs from "./aboutUs";
 import ContactUs from "./contactUs";

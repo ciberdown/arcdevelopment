@@ -5,19 +5,15 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router";
 import { styles } from "../UI/styles";
 import { useEffect, useState } from "react";
-import { orange, blue } from "@mui/material/colors";
 import { Button } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
 import logo from "../../assets/logo.svg";
 import { myStyles } from "../UI/styles";
+import ServicesMenu from "../body/services/servicesMenu";
 
 export default function ColorTabs() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [value, setValue] = useState("one");
   const classes = myStyles();
-  const primary = orange[400];
-  const white = "#FFFFFF";
-  const [selectedColor, setColor] = useState<string>(primary);
   const myPathes = {
     one: "/",
     two: "/services",
@@ -35,13 +31,12 @@ export default function ColorTabs() {
         setValue(item[0]);
         return; //break
       } else if (path === "/freeEstimate") {
-        setColor(white);
+        setValue("free");
       }
     });
   }, [value]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setColor(primary);
     setValue(newValue);
     entries.forEach((item) => {
       if (newValue === item[0]) {
@@ -49,6 +44,9 @@ export default function ColorTabs() {
         return 1;
       }
     });
+  };
+  const handleClickServices = (event: any) => {
+    setAnchorEl(event.currentTarget);
   };
 
   return (
@@ -63,57 +61,41 @@ export default function ColorTabs() {
         alt="arc logo"
       />
       <Box sx={{ width: "100%", color: "red" }}>
-        <MyCustomTabs selectedColor={selectedColor}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            textColor="secondary"
-            indicatorColor="primary"
-            aria-label="secondary tabs example"
-          >
-            <Tab
-              sx={{ marginRight: "auto", ...styles.tab }}
-              value="one"
-              label="Home"
-            />
-            <Tab sx={styles.tab} value="two" label="Services" />
-            <Tab sx={styles.tab} value="three" label="The revelotion" />
-            <Tab sx={styles.tab} value="four" label="About us" />
-            <Tab sx={styles.tab} value="five" label="Contact us" />
-          </Tabs>
-        </MyCustomTabs>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor="secondary"
+          indicatorColor="primary"
+          aria-label="secondary tabs example"
+        >
+          <Tab
+            sx={{ marginRight: "auto", ...styles.tab }}
+            value="one"
+            label="Home"
+          />
+          <Tab
+            onClick={(event) => handleClickServices(event)}
+            sx={styles.tab}
+            value="two"
+            label="Services"
+          />
+          <Tab sx={styles.tab} value="three" label="The revelotion" />
+          <Tab sx={styles.tab} value="four" label="About us" />
+          <Tab sx={styles.tab} value="five" label="Contact us" />
+        </Tabs>
       </Box>
       <Button
         variant="contained"
         sx={styles.button}
         color="secondary"
-        onClick={(e) => {
+        onClick={() => {
           navigate("/freeEstimate");
-          setColor(white);
+          setValue("free");
         }}
       >
         Free Estimated
       </Button>
+      <ServicesMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </>
   );
-}
-
-function MyCustomTabs({
-  children,
-  selectedColor,
-}: {
-  children: JSX.Element;
-  selectedColor: string;
-}) {
-  const tabsTheme = createTheme({
-    palette: {
-      primary: {
-        main: blue[700],
-      },
-      secondary: {
-        main: selectedColor,
-      },
-    },
-  });
-  return <ThemeProvider theme={tabsTheme}>{children}</ThemeProvider>;
 }
