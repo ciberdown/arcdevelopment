@@ -23,13 +23,15 @@ export default function ColorTabs({
     entries.forEach((item) => {
       if (newValue === item[0]) {
         navigate(item[1]);
+        if (newValue === "two") {
+          //for services
+          setAnchorEl(event.currentTarget);
+        }
         return 1;
       }
     });
   };
-  const handleClickServices = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
+
   return (
     <>
       <Box sx={{ width: "100%", color: "red" }}>
@@ -45,12 +47,7 @@ export default function ColorTabs({
             value="one"
             label="Home"
           />
-          <Tab
-            onClick={(event) => handleClickServices(event)}
-            sx={styles.tab}
-            value="two"
-            label="Services"
-          />
+          <Tab sx={styles.tab} value="two" label="Services" />
           <Tab sx={styles.tab} value="three" label="The revelotion" />
           <Tab sx={styles.tab} value="four" label="About us" />
           <Tab sx={styles.tab} value="five" label="Contact us" />
