@@ -18,15 +18,14 @@ export default function ColorTabs({
   setAnchorEl,
 }: Props) {
   const navigate = useNavigate();
+  const handleClickServices = (event: React.SyntheticEvent)=>{
+    setAnchorEl(event.currentTarget);
+  }
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     entries.forEach((item) => {
       if (newValue === item[0]) {
         navigate(item[1]);
-        if (newValue === "two") {
-          //for services
-          setAnchorEl(event.currentTarget);
-        }
         return 1;
       }
     });
@@ -47,7 +46,7 @@ export default function ColorTabs({
             value="one"
             label="Home"
           />
-          <Tab sx={styles.tab} value="two" label="Services" />
+          <Tab onClick={(e)=>handleClickServices(e)} sx={styles.tab} value="two" label="Services" />
           <Tab sx={styles.tab} value="three" label="The revelotion" />
           <Tab sx={styles.tab} value="four" label="About us" />
           <Tab sx={styles.tab} value="five" label="Contact us" />

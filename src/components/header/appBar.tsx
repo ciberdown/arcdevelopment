@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import logo from "../../assets/logo.svg";
 import { myStyles } from "../UI/styles";
-import ServicesMenu from "../body/services/servicesMenu";
+import ServicesMenu from "../body/services menu/servicesMenu";
 
 export default function NavBar(props: ElevationProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -25,11 +25,19 @@ export default function NavBar(props: ElevationProps) {
     four: "/about",
     five: "/contact",
   };
+  const servicesPathes = [
+    "/customSoftwareDevelopment",
+    "/mobileAppDevelopment",
+    "/websiteDevelopment",
+  ];
   const entries = Object.entries(myPathes); //[['one', '/'], ['two', '/services'] ,...]
   const navigate = useNavigate();
   useEffect(() => {
     //when page reloads
     const path: string = window.location.pathname; // '/'
+    if(servicesPathes.indexOf(path) >= 0){
+      setValue("two")
+    }
     entries.forEach((item) => {
       if (path === item[1]) {
         setValue(item[0]);
