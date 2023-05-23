@@ -1,23 +1,26 @@
 import { createTheme } from "@mui/material/styles";
-import { blue, orange } from "@mui/material/colors";
+import { blue, orange, red } from "@mui/material/colors";
 
 declare module "@mui/material/styles" {
   interface Theme {
-    status: {
+    custom: {
       danger: string;
+      myColor: string
     };
   }
   // allow configuration using `createTheme`
   interface ThemeOptions {
-    status?: {
+    custom?: {
       danger?: string;
+      myColor?:string
     };
   }
 }
 
 const theme = createTheme({
-  status: {
-    danger: orange[500],
+  custom: {
+    danger: orange[300],
+    myColor: red[300]
   },
   direction: "rtl",
   palette: {
@@ -31,6 +34,7 @@ const theme = createTheme({
     info: {
       main: "#FFFFFF",
     },
+    
   },
 });
 

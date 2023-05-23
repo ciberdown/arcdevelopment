@@ -7,25 +7,26 @@ interface Props {
   setValue: Function;
   valueSetter: string;
   entries: [string, string][];
-  anchorEl: HTMLElement | null;
   setAnchorEl: Function;
+  setSelectedIndex: Function
 }
 export default function ColorTabs({
   setValue,
   valueSetter: value,
   entries,
-  anchorEl,
   setAnchorEl,
+  setSelectedIndex
 }: Props) {
   const navigate = useNavigate();
   const handleClickServices = (event: React.SyntheticEvent)=>{
     setAnchorEl(event.currentTarget);
   }
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+   newValue !== 'two' && setValue(newValue);
     entries.forEach((item) => {
       if (newValue === item[0]) {
-        navigate(item[1]);
+        newValue !== 'two' &&  navigate(item[1]);
+        newValue === 'two' && setSelectedIndex(0)
         return 1;
       }
     });
