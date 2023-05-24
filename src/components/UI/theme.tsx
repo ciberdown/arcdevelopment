@@ -5,14 +5,14 @@ declare module "@mui/material/styles" {
   interface Theme {
     custom: {
       danger: string;
-      myColor: string
+      myColor: string;
     };
   }
   // allow configuration using `createTheme`
   interface ThemeOptions {
     custom?: {
       danger?: string;
-      myColor?:string
+      myColor?: string;
     };
   }
 }
@@ -20,7 +20,7 @@ declare module "@mui/material/styles" {
 const theme = createTheme({
   custom: {
     danger: orange[300],
-    myColor: red[300]
+    myColor: red[300],
   },
   direction: "rtl",
   palette: {
@@ -34,12 +34,7 @@ const theme = createTheme({
     info: {
       main: "#FFFFFF",
     },
-    
   },
 });
 
 export default theme;
-
-
-
-

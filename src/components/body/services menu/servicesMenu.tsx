@@ -2,46 +2,29 @@ import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router";
-import { makeStyles } from "@mui/styles";
-import { Theme } from "@mui/material/styles";
-
+import { useStyles } from "../../UI/styles";
 const options = [
   "Services",
   "Custom software development",
   "Mobile app development",
   "Website development",
 ];
-const useStyle = makeStyles((thisTheme: Theme) => ({
-  selected: {
-    color: thisTheme.palette.secondary.main,
-    backgroundColor: "white",
-  },
-  menu: {
-    backgroundColor: thisTheme.palette.primary.main,
-    color: thisTheme.palette.info.main,
-  },
-  menuItems: {
-    "&:hover": {
-      color: thisTheme.palette.secondary.main,
-      backgroundColor: thisTheme.palette.info.main,
-      opacity: 1,
-    },
-  },
-}));
+interface Props {
+  anchorEl: HTMLElement | null;
+  setAnchorEl: Function;
+  selectedIndex: number | undefined;
+  setSelectedIndex: Function;
+  setValue: Function;
+}
+
 export default function SServicesMenu({
   anchorEl,
   setAnchorEl,
   selectedIndex,
   setSelectedIndex,
   setValue,
-}: {
-  anchorEl: HTMLElement | null;
-  setAnchorEl: Function;
-  selectedIndex: number | undefined;
-  setSelectedIndex: Function;
-  setValue: Function;
-}) {
-  const classes = useStyle();
+}: Props) {
+  const classes = useStyles();
   React.useEffect(() => {
     const path: string = window.location.pathname; // '/'
     switch (path) {
@@ -91,7 +74,8 @@ export default function SServicesMenu({
     <div>
       <Menu
         classes={{ list: classes.menu }}
-        id="lock-menu"
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -100,17 +84,27 @@ export default function SServicesMenu({
           role: "listbox",
         }}
         transitionDuration={50}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
       >
-        {options.map((option, index) => (
-          <MenuItem
-            classes={{ selected: classes.selected, root: classes.menuItems }}
-            key={option}
-            selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <div onMouseLeave={handleClose}>
+          {options.map((option, index) => (
+            <MenuItem
+              classes={{ root: classes.menuItems, selected: classes.selected }}
+              key={option}
+              selected={index === selectedIndex}
+              onClick={(event) => handleMenuItemClick(event, index)}
+            >
+              {option}
+            </MenuItem>
+          ))}
+        </div>
       </Menu>
     </div>
   );

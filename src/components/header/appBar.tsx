@@ -3,23 +3,24 @@ import AppBar from "@mui/material/AppBar";
 import { ElevationScroll, ElevationProps } from "../UI/functions";
 import ColorTabs from "./tabs";
 import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import { useNavigate } from "react-router";
 import { styles } from "../UI/styles";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import logo from "../../assets/logo.svg";
-import { myStyles } from "../UI/styles";
+import { useStyles } from "../UI/styles";
 import ServicesMenu from "../body/services menu/servicesMenu";
+import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 export default function NavBar(props: ElevationProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState<number>();
-
+  const theme = useTheme();
+  const lowerThanMedium: boolean = useMediaQuery(theme.breakpoints.down("md"));
   const [value, setValue] = useState("one");
-  const classes = myStyles();
+  const classes = useStyles();
   const myPathes = {
     one: "/",
     two: "/services",
@@ -62,33 +63,41 @@ export default function NavBar(props: ElevationProps) {
             className={classes.logo}
             src={logo}
             alt="arc logo"
-            draggable = {false}
+            draggable={false}
           />
-          <ColorTabs
-            setSelectedIndex={setSelectedIndex}
-            setValue={setValue}
-            valueSetter={value}
-            entries={entries}
-            setAnchorEl={setAnchorEl}
-          />
-          <Button
-            variant="contained"
-            sx={styles.button}
-            color="secondary"
-            onClick={() => {
-              navigate("/freeEstimate");
-              setValue("free");
-            }}
-          >
-            Free Estimated
-          </Button>
-          <ServicesMenu
-          setValue ={setValue}
-            selectedIndex={selectedIndex}
-            setSelectedIndex={setSelectedIndex}
-            anchorEl={anchorEl}
-            setAnchorEl={setAnchorEl}
-          />
+          <Box sx={{ width: "100%", fontWeight: "bolder" }}>
+            {!lowerThanMedium && (
+              <ColorTabs
+                setSelectedIndex={setSelectedIndex}
+                setValue={setValue}
+                valueSetter={value}
+                entries={entries}
+                setAnchorEl={setAnchorEl}
+              />
+            )}
+          </Box>
+          {!lowerThanMedium && (
+            <>
+              <Button
+                variant="contained"
+                sx={styles.button}
+                color="secondary"
+                onClick={() => {
+                  navigate("/freeEstimate");
+                  setValue("free");
+                }}
+              >
+                Free Estimated
+              </Button>
+              <ServicesMenu
+                setValue={setValue}
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+                anchorEl={anchorEl}
+                setAnchorEl={setAnchorEl}
+              />
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </ElevationScroll>
